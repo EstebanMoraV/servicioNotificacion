@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,8 +31,8 @@ public class NotificacionController {
         return new ResponseEntity<>(notificaciones, HttpStatus.OK);
     }
 
-    @GetMapping("/usuario")
-    public ResponseEntity<List<Notificacion>> getNotificacionesByUsuarioId(@RequestParam Integer usuarioId) {
+    @GetMapping("/usuario/{usuarioId}")
+    public ResponseEntity<List<Notificacion>> getNotificacionesByUsuarioId(@PathVariable Integer usuarioId) {
         List<Notificacion> notificaciones = notificacionService.getNotificacionesByUsuarioId(usuarioId);
         return new ResponseEntity<>(notificaciones, HttpStatus.OK);
     }

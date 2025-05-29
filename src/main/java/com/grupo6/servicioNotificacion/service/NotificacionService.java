@@ -25,6 +25,12 @@ public class NotificacionService {
         return notificacionRepository.findById(id).orElse(null);
     }
 
+    public List<Notificacion> getNotificacionesByUsuarioId(Integer usuarioId) {
+        return notificacionRepository.findAll().stream()
+                .filter(notificacion -> notificacion.getUsuario().getId().equals(usuarioId))
+                .toList();
+    }
+
     public Notificacion createNotificacion(Notificacion notificacion) {
         return notificacionRepository.save(notificacion);
     }
@@ -41,12 +47,6 @@ public class NotificacionService {
 
     public void deleteNotificacion(Integer id) {
         notificacionRepository.deleteById(id);
-    }
-
-    public List<Notificacion> getNotificacionesByUsuarioId(Integer usuarioId) {
-        return notificacionRepository.findAll().stream()
-                .filter(notificacion -> notificacion.getUsuario().getId().equals(usuarioId))
-                .toList();
     }
 
 }
